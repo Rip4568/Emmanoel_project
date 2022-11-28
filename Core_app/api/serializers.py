@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from Perfil_app.models import Perfil
 
-class PerfilSerializer(serializers.ModelSerializer):
+class PerfilModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perfil
         #fields = ['id', 'name', 'email'] #selecionar os campos para serializar

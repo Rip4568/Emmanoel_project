@@ -2,18 +2,18 @@ from rest_framework import views,viewsets, status
 from rest_framework.views import Response
 
 from Perfil_app.models import Perfil
-from .serializers import PerfilSerializer
+from .serializers import PerfilModelSerializer
 
 class PerfilAPIView(views.APIView):
     """Esta api retorna todos os perfils, ou cria um novo perfil """
     def get(self, request,format=None):
         perfil = Perfil.objects.all()
-        serializer = PerfilSerializer(perfil, many=True)
+        serializer = PerfilModelSerializer(perfil, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     
     def post(self, request, format=None):
-        serializer:PerfilSerializer = PerfilSerializer(data=request.data)
+        serializer:PerfilModelSerializer = PerfilModelSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -22,7 +22,7 @@ class PerfilAPIView(views.APIView):
     
     
 class PerfilModelViewSet(viewsets.ModelViewSet):
-    serializer_class=PerfilSerializer
+    serializer_class=PerfilModelSerializer
     queryset = Perfil.objects.all()
     
 """ class SnippetList(APIView):
