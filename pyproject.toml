@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "emmanoel-project"
+version = "0.1.0"
+description = "Projeto inicial do aplicativo de rede social, atualmente em fase beta"
+authors = ["Rip4568 <63131796+Rip4568@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "emmanoel_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django-rest-auth = "^0.9.5"
+django-extensions = "^3.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
