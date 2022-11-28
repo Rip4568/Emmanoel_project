@@ -21,7 +21,7 @@ class PerfilAPIView(views.APIView):
 
     
     
-class PerfilModelSerializer(viewsets.ModelViewSet):
+class PerfilModelViewSet(viewsets.ModelViewSet):
     serializer_class=PerfilSerializer
     queryset = Perfil.objects.all()
     
