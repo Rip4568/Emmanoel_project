@@ -19,6 +19,20 @@ class PerfilAPIView(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class NickNameAllAPIView(views.APIView):
+    """ Esta api retorna todos os nicknames """
+    def get(self, request, format=None):
+        perfis = Perfil.objects.all()
+        nickNames:list = []
+        for perfil in perfis:
+            nickNames.append(perfil.nick_name)
+        return Response(nickNames)
+
+class NickNameExists(views.APIView):
+    """ Esta api retorna um valor booleano para caso exista ja exista ou não o nickname fornecido """
+    def get(self, request, nickname,format=None):
+        return Response(Perfil.objects.all().filter(nick_name=nickname).exists())
+
     
     
 class PerfilModelViewSet(viewsets.ModelViewSet):

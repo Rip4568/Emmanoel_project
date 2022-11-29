@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 import dotenv
 dotenv.load_dotenv()
@@ -13,6 +14,7 @@ DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,7 +77,7 @@ WSGI_APPLICATION = 'Emmanoel_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db222.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -117,6 +120,7 @@ MEDIA_ROOT = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 """ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -142,3 +146,15 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+""" 
+REST_AUTH_REGISTER_PERMISSION_CLASSES = (
+    'rest_framework.permissions.IsAuthenticated',
+    #'Core_app.api.serializers.CustomRegistrationSerializer',
+) """
+
+#configuração da jazzmin
+JAZZMIN_SETTINGS = {
+    "site_title": "Emmanoel_project",
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Administração",
+}

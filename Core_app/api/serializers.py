@@ -8,6 +8,8 @@ class PerfilModelSerializer(serializers.ModelSerializer):
         #fields = ['id', 'name', 'email'] #selecionar os campos para serializar
         fields = '__all__' #selecionar todos os campos
 
+    
+
 """ 
 class SnippetSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
