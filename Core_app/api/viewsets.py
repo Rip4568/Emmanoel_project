@@ -29,7 +29,7 @@ class NickNameAllAPIView(views.APIView):
         return Response(nickNames)
 
 class NickNameExists(views.APIView):
-    """ Esta api retorna um valor booleano para caso exista ja exista ou não o nickname fornecido """
+    """ Esta api retorna um valor booleano para caso exista ou não o nickname fornecido """
     def get(self, request, nickname,format=None):
         return Response(Perfil.objects.all().filter(nick_name=nickname).exists())
 
