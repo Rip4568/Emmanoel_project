@@ -29,7 +29,7 @@ class Perfil(models.Model):
 @receiver(post_save, sender=User)
 def perfil_post_save_receiver(sender:User, instance, created, **kwargs):
     if created:
-        Perfil.objects.create(user=instance, nick_name='{}{}'.format(sender.username, random.randint(9,999)))
+        Perfil.objects.create(user=instance)
 
 #essa linha abaixo talvez não seja necessario
 #pois a funcao do create em objects ja cria e salva no bd
