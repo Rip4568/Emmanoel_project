@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 from Perfil_app.models import Perfil
+from Postagem_app.models import Postagem
 
 class PerfilModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,7 +10,15 @@ class PerfilModelSerializer(serializers.ModelSerializer):
         #fields = ['id', 'name', 'email'] #selecionar os campos para serializar
         fields = '__all__' #selecionar todos os campos
 
-    
+class PostagemModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Postagem
+        fields = '__all__'
+
+class UserModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 """ 
 class SnippetSerializer(serializers.Serializer):

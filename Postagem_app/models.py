@@ -4,8 +4,9 @@ from Album_app.models import Album
 from Perfil_app.models import Perfil
 
 class Postagem(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True)
+    fotos = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True)
     perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
+    texto = models.CharField(max_length=255, blank=False, null=True)
 
     class Meta:
         verbose_name = ("Postagem")
@@ -13,4 +14,3 @@ class Postagem(models.Model):
 
     def __str__(self):
         return f'{self.perfil}'
-

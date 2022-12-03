@@ -1,9 +1,32 @@
 from rest_framework import views,viewsets, status
 from django.core.paginator import Paginator
 from rest_framework.views import Response
+from django.contrib.auth.models import User
 
 from Perfil_app.models import Perfil
-from .serializers import PerfilModelSerializer
+from Postagem_app.models import Postagem
+from .serializers import PerfilModelSerializer, UserModelSerializer, PostagemModelSerializer
+#talvez seja melhor fazer as importações somente pela serilizaers
+
+
+
+class PostagemModelViewSet(viewsets.ModelViewSet):
+    queryset = Postagem.objects.all()
+    serializer_class = PostagemModelSerializer
+
+""" class PostagemViewSet(viewsets.ViewSet):
+    #Uma api com todas as operações CRUD de uma criação de """
+class UserViewSet(viewsets.ViewSet):
+    """ Retorna uma lista de usuarios ou um usuario em especifico """
+    def list(self, request, format=None):
+        queryset = User.objects.all()
+        serializer = UserModelSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def retrieve(self, request, pk, format=None):
+        queryset = User.objects.get(pk-pk)
+        serializer = UserModelSerializer(queryset, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class PerfilModelViewSet(viewsets.ModelViewSet):
     """ RESUMO """
