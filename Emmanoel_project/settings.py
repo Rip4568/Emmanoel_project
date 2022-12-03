@@ -192,5 +192,5 @@ CHANNEL_LAYERS = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100  # ubah page_size sesuai keinginan
+    'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
 }

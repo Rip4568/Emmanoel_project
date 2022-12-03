@@ -27,9 +27,9 @@ class Perfil(models.Model):
 
 #sempre que um usuario for cadastrado com sucesso, crie um perfil
 @receiver(post_save, sender=User)
-def perfil_post_save_receiver(sender, instance, created, **kwargs):
+def perfil_post_save_receiver(sender:User, instance, created, **kwargs):
     if created:
-        Perfil.objects.create(user=instance, nick_name=random.randint(9,999))
+        Perfil.objects.create(user=instance, nick_name='{}{}'.format(sender.username, random.randint(9,999)))
 
 #essa linha abaixo talvez não seja necessario
 #pois a funcao do create em objects ja cria e salva no bd
