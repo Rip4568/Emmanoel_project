@@ -11,7 +11,7 @@ class Perfil(models.Model):
     nome_completo = models.CharField(max_length=128, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     data_nascimento = models.DateField(auto_now_add=False, blank=True, null=True)
-    nick_name = models.CharField(max_length=12, unique=True, blank=True,null=True)
+    nick_name = models.CharField(max_length=64, unique=True, blank=True,null=True)
     sexo = models.CharField(max_length=16, blank=True, null=True)
     descricao = models.CharField(max_length=255, blank=True, null=True)
     #futuramente alterar para ImageField
