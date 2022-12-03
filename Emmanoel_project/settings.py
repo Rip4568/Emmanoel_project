@@ -24,7 +24,12 @@ INSTALLED_APPS = [
     #djangoapps
     'Core_app',
     'Perfil_app',
+    'Mensagem_app',
+    'Grupo_app',
+    'Postagem_app',
+    'Album_app',
     #dependencias
+    'channels',
     'corsheaders',
     'django_extensions',
     'rest_framework',
@@ -74,13 +79,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Emmanoel_project.wsgi.application'
 
-DATABASES = {
+ASGI_APPLICATION = "config.asgi.application"
+
+
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+} """
 
+DATABASES =  {
+    "default":dj_database_url.config(default='postgresql://postgres:admin@localhost:5432/emmanoel_project_db',conn_max_age=600)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -157,4 +168,29 @@ JAZZMIN_SETTINGS = {
     "site_title": "Emmanoel_project",
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Administração",
+}
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "pyamqp://guest@localhost//",
+        "CONFIG": {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+
+""" CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(env("REDIS_HOST"), env.int("REDIS_PORT"))],
+        },
+    },
+} """
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100  # ubah page_size sesuai keinginan
 }

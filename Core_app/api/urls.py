@@ -1,8 +1,12 @@
 from django.urls import path
+from rest_framework import routers
+
 from . import viewsets
 
+router = routers.DefaultRouter()
+router.register('perfil-modelviewsets',viewsets.PerfilModelViewSet)
+router.register('perfil-viewsets',viewsets.PerfilViewSet,basename='asdasd')
+router.register('perfil-nickname-exists', viewsets.NicknameExistsViewSet, basename='nickname-exists')
+
 urlpatterns = [
-    path('',viewsets.PerfilAPIView.as_view()),
-    path('all-nicknames/',viewsets.NickNameAllAPIView.as_view()),
-    path('nickname-exists/<nickname>/',viewsets.NickNameExists.as_view()),
-]
+] + router.urls
