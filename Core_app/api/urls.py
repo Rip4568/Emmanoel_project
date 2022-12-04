@@ -4,7 +4,7 @@ from rest_framework import routers
 from . import viewsets
 
 router = routers.DefaultRouter()
-router.register('perfil-modelviewsets',viewsets.PerfilModelViewSet)
+router.register('perfil-modelviewsets',viewsets.PerfilModelViewSet, basename='perfil-modelviewset')
 router.register('perfil-viewsets',viewsets.PerfilViewSet,basename='perfil-viewsets')
 router.register('perfil-nickname-exists', viewsets.NicknameExistsViewSet, basename='nickname-exists')
 router.register('user-viewset', viewsets.UserViewSet, basename='user-viewset')
