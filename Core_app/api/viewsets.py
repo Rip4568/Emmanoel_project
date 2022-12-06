@@ -39,6 +39,8 @@ class UserViewSet(viewsets.ViewSet):
         serializer = UserModelSerializer(queryset, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    #fazer os restantes das operações de api aqui
+
 class PerfilModelViewSet(viewsets.ModelViewSet):
     """ RESUMO """
     serializer_class = PerfilModelSerializer

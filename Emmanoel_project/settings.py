@@ -40,8 +40,7 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'allauth',
-    'allauth.account',
-    
+    'allauth.account',    
     'allauth.socialaccount',
 ]
 
@@ -112,9 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     }, """
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
@@ -149,6 +145,8 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = True
 #CORS_ALLOWED_ORIGIN_REGEXES = [r'http://.*', r'https://.*']
 
+""" 
+TODOS OS METODOS ABAIXO:
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -157,7 +155,13 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+""" 
+REST_AUTH_REGISTER_PERMISSION_CLASSES = (
+    'rest_framework.permissions.IsAuthenticated',
+    #'Core_app.api.serializers.CustomRegistrationSerializer',
+) 
 
+"""
 #configuração da jazzmin
 JAZZMIN_SETTINGS = {
     "site_title": "Emmanoel_project",
@@ -176,6 +180,7 @@ CHANNEL_LAYERS = {
 }
 
 
+""" 
 """ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -183,8 +188,9 @@ CHANNEL_LAYERS = {
             "hosts": [(env("REDIS_HOST"), env.int("REDIS_PORT"))],
         },
     },
-} """
-
+} 
+"""
+ 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
