@@ -2,20 +2,31 @@ from rest_framework import views,viewsets, status
 from django.core.paginator import Paginator
 from rest_framework.views import Response
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
-from .serializers import PerfilModelSerializer, UserModelSerializer, PostagemModelSerializer
+from .serializers import PerfilModelSerializer, PostagemModelSerializer, UserModelSerializer
+from dj_rest_auth.views import LoginView
+from dj_rest_auth.serializers import LoginSerializer
+
 #talvez seja melhor fazer as importações somente pela serilizaers
 
+class CustomLoginView(LoginView):
+    def get_response(self):
+        orginal_response = super().get_response()
+        mydata = {
+            "user": LoginSerializer(self.user).data,
+            "perfil": PerfilModelSerializer(Perfil.objects.get(user=self.user)).data,
+            }
+        orginal_response.data.update(mydata)
+        return orginal_response
 
 
 class PostagemModelViewSet(viewsets.ModelViewSet):
     queryset = Postagem.objects.all()
     serializer_class = PostagemModelSerializer
 
-""" class PostagemViewSet(viewsets.ViewSet):
-    #Uma api com todas as operações CRUD de uma criação de """
 class UserViewSet(viewsets.ViewSet):
     """ Retorna uma lista de usuarios ou um usuario em especifico """
     def list(self, request, format=None):
@@ -46,7 +57,6 @@ class PerfilViewSet(viewsets.ViewSet):
         queryset = Perfil.objects.get(pk=pk)
         serializer = PerfilModelSerializer(queryset, many=False)
         return Response(serializer.data)
-
 
 
 class NicknameExistsViewSet(viewsets.ViewSet):

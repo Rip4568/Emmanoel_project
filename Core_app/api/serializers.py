@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+#from django.utils.translation import ugettext_lazy as _
 
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
@@ -19,6 +21,8 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
 
 """ 
 class SnippetSerializer(serializers.Serializer):

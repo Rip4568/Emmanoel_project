@@ -157,11 +157,6 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
-""" 
-REST_AUTH_REGISTER_PERMISSION_CLASSES = (
-    'rest_framework.permissions.IsAuthenticated',
-    #'Core_app.api.serializers.CustomRegistrationSerializer',
-) """
 
 #configuração da jazzmin
 JAZZMIN_SETTINGS = {
@@ -193,4 +188,8 @@ CHANNEL_LAYERS = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
+}
+
+REST_AUTH_SERIALIZERS = {
+    #
 }

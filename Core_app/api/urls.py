@@ -10,5 +10,7 @@ router.register('perfil-nickname-exists', viewsets.NicknameExistsViewSet, basena
 router.register('user-viewset', viewsets.UserViewSet, basename='user-viewset')
 router.register('postagem-modelviewset', viewsets.PostagemModelViewSet, basename='postagem-modelviewset')
 
+
 urlpatterns = [
+  path('login/', viewsets.CustomLoginView.as_view(), name='login'),
 ] + router.urls
