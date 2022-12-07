@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from Perfil_app.models import Perfil
+from Mensagem_app.models import Mensagem
 
 
 class Grupo(models.Model):
@@ -46,3 +47,23 @@ class Participante(models.Model):
 
     def __str__(self):
         return f'{self.participante} participa de {self.grupo}'
+
+class MensagemParticipante(models.Model):
+    de = models.ForeignKey(Participante, on_delete=models.CASCADE, related_name='mensagens_enviadas', null=True)
+    grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, related_name='mensagens', null=True)
+    mensagem = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("MensagemGrupo")
+        verbose_name_plural = _("MensagemGrupos")
+
+    def __str__(self):
+        return f'de :{self.de} para o grupo: {self.grupo}'
+
+    def get_absolute_url(self):
+        return reverse("MensagemGrupo_detail", kwargs={"pk": self.pk})
+
+""" acredito que devera ser necessario a criação de um modelo
+base para envio mensagens, que pdoera ser usado tanto no envio de mensagens para grupos ou conversars privadas """
+class MensagemGrupo():
+    pass

@@ -11,6 +11,7 @@ router.register('user-viewset', viewsets.UserViewSet, basename='user-viewset')
 router.register('postagem-modelviewset', viewsets.PostagemModelViewSet, basename='postagem-modelviewset')
 router.register('grupo-modelviewsets', viewsets.GrupoModelViewSet, basename='grupo-modelviewsets')
 router.register('participantes-modelviewsets',viewsets.ParticipanteModelViewSet, basename='participantes-modelviewsets')
+router.register('mensagem-participante-modelviewsets', viewsets.MensagemParticipanteModelViewSet, basename='mensagem-participante-modelviewsets')
 
 
 urlpatterns = [
