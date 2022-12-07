@@ -15,12 +15,16 @@ sys.path.append(str(ROOT_DIR / "Emmanoel_project"))
 # Import websocket application here, so apps from django_application are loaded first
 from . import routing  # noqa isort:skip
 
+from channels.auth import AuthMiddleware
 from channels.routing import ProtocolTypeRouter, URLRouter  # noqa isort:skip
+from channels.security.websocket import AllowedHostsOriginValidator
 
 application = ProtocolTypeRouter(
     {
         "http": get_asgi_application(),
-        "websocket": URLRouter(routing.websocket_urlpatterns),
+        "websocket": AllowedHostsOriginValidator(
+            AuthMiddleware(URLRouter(routing.websocket_urlpatterns))
+        ),
     }
 )
 

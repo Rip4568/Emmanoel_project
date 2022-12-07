@@ -161,14 +161,11 @@ REST_AUTH_REGISTER_PERMISSION_CLASSES = (
     #'Core_app.api.serializers.CustomRegistrationSerializer',
 ) 
 
-"""
-#configuração da jazzmin
 JAZZMIN_SETTINGS = {
     "site_title": "Emmanoel_project",
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Administração",
 }
-
 
 CHANNEL_LAYERS = {
     "default": {
@@ -179,8 +176,6 @@ CHANNEL_LAYERS = {
     },
 }
 
-
-""" 
 """ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -188,8 +183,8 @@ CHANNEL_LAYERS = {
             "hosts": [(env("REDIS_HOST"), env.int("REDIS_PORT"))],
         },
     },
-} 
-"""
+}  """
+
  
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',

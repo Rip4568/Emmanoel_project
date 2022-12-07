@@ -15,9 +15,11 @@ from dj_rest_auth.serializers import LoginSerializer
 class CustomLoginView(LoginView):
     def get_response(self):
         orginal_response = super().get_response()
+        perfil = Perfil.objects.get(user=self.user)
         mydata = {
             "user": LoginSerializer(self.user).data,
-            "perfil": PerfilModelSerializer(Perfil.objects.get(user=self.user)).data,
+            "perfil": PerfilModelSerializer(perfil).data,
+            "postagens": Postagem.objects.filter(perfil=perfil),
             }
         orginal_response.data.update(mydata)
         return orginal_response
