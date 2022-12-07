@@ -16,7 +16,7 @@ sys.path.append(str(ROOT_DIR / "Emmanoel_project"))
 from . import routing  # noqa isort:skip
 
 from channels.auth import AuthMiddleware
-from channels.routing import ProtocolTypeRouter, URLRouter  # noqa isort:skip
+from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 
 application = ProtocolTypeRouter(
@@ -27,7 +27,6 @@ application = ProtocolTypeRouter(
         ),
     }
 )
-
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Emmanoel_project.settings')
 

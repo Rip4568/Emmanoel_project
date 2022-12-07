@@ -1,14 +1,22 @@
-from rest_framework import views,viewsets, status
 from django.core.paginator import Paginator
-from rest_framework.views import Response
 from django.contrib.auth.models import User
+from rest_framework import views,viewsets, status
+from rest_framework.views import Response
 from rest_framework.permissions import IsAuthenticated
+from dj_rest_auth.views import LoginView
+from dj_rest_auth.serializers import LoginSerializer
 
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
-from .serializers import PerfilModelSerializer, PostagemModelSerializer, UserModelSerializer
-from dj_rest_auth.views import LoginView
-from dj_rest_auth.serializers import LoginSerializer
+from Grupo_app.models import Grupo, Participante
+
+from .serializers import (
+    PerfilModelSerializer, 
+    PostagemModelSerializer, 
+    UserModelSerializer, 
+    GrupoModelSerializer, 
+    ParticipanteModelSerializer
+    )
 
 #talvez seja melhor fazer as importações somente pela serilizaers
 
@@ -20,10 +28,18 @@ class CustomLoginView(LoginView):
             "user": LoginSerializer(self.user).data,
             "perfil": PerfilModelSerializer(perfil).data,
             "postagens": Postagem.objects.filter(perfil=perfil),
+            "grupos_participantes": None,
             }
         orginal_response.data.update(mydata)
         return orginal_response
 
+class GrupoModelViewSet(viewsets.ModelViewSet):
+    queryset = Grupo.objects.all()
+    serializer_class = GrupoModelSerializer
+
+class ParticipanteModelViewSet(viewsets.ModelViewSet):
+    queryset = Participante.objects.all()
+    serializer_class = ParticipanteModelSerializer
 
 class PostagemModelViewSet(viewsets.ModelViewSet):
     queryset = Postagem.objects.all()

@@ -5,12 +5,24 @@ from django.contrib.auth import authenticate
 
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
+from Grupo_app.models import Grupo, Participante
 
 class PerfilModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perfil
         #fields = ['id', 'name', 'email'] #selecionar os campos para serializar
         fields = '__all__' #selecionar todos os campos
+
+class GrupoModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grupo
+        fields = '__all__'
+
+class ParticipanteModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participante
+        fields = '__all__'
+
 
 class PostagemModelSerializer(serializers.ModelSerializer):
     class Meta:
