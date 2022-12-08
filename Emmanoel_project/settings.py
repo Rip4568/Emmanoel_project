@@ -185,9 +185,16 @@ CHANNEL_LAYERS = {
 }  """
 
  
-REST_FRAMEWORK = {
+""" REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
+    
+} """
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 
 """ REST_AUTH_SERIALIZERS = {
