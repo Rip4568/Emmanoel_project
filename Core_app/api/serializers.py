@@ -6,8 +6,12 @@ from django.contrib.auth import authenticate
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
 from Grupo_app.models import Grupo, Participante, MensagemParticipante
+from Amigo_app.models import SolicitacaoAmizade
 
-
+class SolicitacaoAmizadeModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SolicitacaoAmizade
+        fields = '__all__'
 class MensagemParticipanteModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = MensagemParticipante

@@ -9,6 +9,7 @@ from dj_rest_auth.serializers import LoginSerializer
 from Perfil_app.models import Perfil
 from Postagem_app.models import Postagem
 from Grupo_app.models import Grupo, Participante, MensagemGrupo, MensagemParticipante
+from Amigo_app.models import SolicitacaoAmizade
 
 from .serializers import (
     PerfilModelSerializer,
@@ -16,7 +17,8 @@ from .serializers import (
     UserModelSerializer,
     GrupoModelSerializer,
     ParticipanteModelSerializer,
-    MensagemParticipanteModelSerializer
+    MensagemParticipanteModelSerializer,
+    SolicitacaoAmizadeModelSerializer,
 )
 
 
@@ -33,6 +35,9 @@ class CustomLoginView(LoginView):
         orginal_response.data.update(mydata)
         return orginal_response
 
+class SolicitacaoAmizadeModelViewSet(viewsets.ModelViewSet):
+    queryset = SolicitacaoAmizade.objects.all()
+    serializer_class = SolicitacaoAmizadeModelSerializer
 
 class MensagemParticipanteModelViewSet(viewsets.ModelViewSet):
     queryset = MensagemParticipante.objects.all()

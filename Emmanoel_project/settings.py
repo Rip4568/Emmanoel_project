@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #djangoapps
     'Core_app',
+    'Amigo_app',
     'Perfil_app',
     'Mensagem_app',
     'Grupo_app',
@@ -194,7 +195,7 @@ CHANNEL_LAYERS = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
 }
 
 """ REST_AUTH_SERIALIZERS = {

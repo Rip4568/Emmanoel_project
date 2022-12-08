@@ -12,7 +12,7 @@ router.register('postagem-modelviewset', viewsets.PostagemModelViewSet, basename
 router.register('grupo-modelviewsets', viewsets.GrupoModelViewSet, basename='grupo-modelviewsets')
 router.register('participantes-modelviewsets',viewsets.ParticipanteModelViewSet, basename='participantes-modelviewsets')
 router.register('mensagem-participante-modelviewsets', viewsets.MensagemParticipanteModelViewSet, basename='mensagem-participante-modelviewsets')
-
+router.register('solicitacao-amizade-modelviewsets', viewsets.SolicitacaoAmizadeModelViewSet, basename='solicitacao-amizade-modelviewsets')
 
 urlpatterns = [
   path('login/', viewsets.CustomLoginView.as_view(), name='login'),
