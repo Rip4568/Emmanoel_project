@@ -145,8 +145,6 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = True
 #CORS_ALLOWED_ORIGIN_REGEXES = [r'http://.*', r'https://.*']
 
-""" 
-TODOS OS METODOS ABAIXO:
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -155,11 +153,12 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
-""" 
-REST_AUTH_REGISTER_PERMISSION_CLASSES = (
+"""  """
+
+""" REST_AUTH_REGISTER_PERMISSION_CLASSES = (
     'rest_framework.permissions.IsAuthenticated',
     #'Core_app.api.serializers.CustomRegistrationSerializer',
-) 
+)  """
 
 JAZZMIN_SETTINGS = {
     "site_title": "Emmanoel_project",
@@ -191,6 +190,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
 }
 
-REST_AUTH_SERIALIZERS = {
+""" REST_AUTH_SERIALIZERS = {
     #
-}
+} """
