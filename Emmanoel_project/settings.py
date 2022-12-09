@@ -5,7 +5,7 @@ import dj_database_url
 import dotenv
 dotenv.load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #djangoapps
     'Core_app',
+    'User_app',
     'Amigo_app',
     'Perfil_app',
     'Mensagem_app',
@@ -191,6 +192,8 @@ CHANNEL_LAYERS = {
     'PAGE_SIZE': int(os.getenv('PAGE_SIZE'))  # ubah page_size sesuai keinginan
     
 } """
+
+AUTH_USER_MODEL = 'User_app.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

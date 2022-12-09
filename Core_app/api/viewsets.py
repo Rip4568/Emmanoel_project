@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from User_app.models import User
 from rest_framework import views, viewsets, status
 from rest_framework.views import Response
 from rest_framework.permissions import IsAuthenticated
@@ -20,6 +21,7 @@ from .serializers import (
     MensagemParticipanteModelSerializer,
     SolicitacaoAmizadeModelSerializer,
 )
+
 
 
 class CustomLoginView(LoginView):
@@ -58,21 +60,9 @@ class PostagemModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostagemModelSerializer
 
 
-class UserViewSet(viewsets.ViewSet):
-    """ Retorna uma lista de usuarios ou um usuario em especifico """
-
-    def list(self, request, format=None):
-        queryset = User.objects.all()
-        serializer = UserModelSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def retrieve(self, request, pk, format=None):
-        queryset = User.objects.get(pk-pk)
-        serializer = UserModelSerializer(queryset, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    # fazer os restantes das operações de api aqui
-
+class UserModelViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
 
 class PerfilModelViewSet(viewsets.ModelViewSet):
     """ RESUMO """

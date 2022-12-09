@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from User_app.models import User
 from django.contrib.auth import authenticate
 #from django.utils.translation import ugettext_lazy as _
 
@@ -12,6 +12,9 @@ class SolicitacaoAmizadeModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = SolicitacaoAmizade
         fields = '__all__'
+
+
+
 class MensagemParticipanteModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = MensagemParticipante
