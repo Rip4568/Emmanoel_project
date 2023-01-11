@@ -1,0 +1,13 @@
+colocar essa linha abaixo no arquivo fly.toml caso precise
+
+[deploy]
+  release_command = "python manage.py migrate"
+
+
+psycopg2 removido e deixado apenas o binary por causa do fly.io
+
+
+adicionar essas duas linhas de comando abaixo do
+collectstatic do Dockerfile:
+RUN python manage.py makemigrations
+RUN python manage.py migrate

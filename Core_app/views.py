@@ -33,3 +33,4 @@ def index(request):
 def room(request, room_name):
     TEMPLATE_PATH = 'Core_app/chat.html'
     return render(request,TEMPLATE_PATH,context={"room_name":room_name})
+

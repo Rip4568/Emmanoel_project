@@ -83,16 +83,16 @@ WSGI_APPLICATION = 'Emmanoel_project.wsgi.application'
 ASGI_APPLICATION = "config.asgi.application"
 
 
-""" DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-} """
-
-DATABASES =  {
-    "default":dj_database_url.config(default='postgresql://postgres:admin@localhost:5432/emmanoel_project_db',conn_max_age=600)
 }
+
+""" DATABASES =  {
+    "default":dj_database_url.config(default='postgresql://postgres:admin@localhost:5432/emmanoel_project_db',conn_max_age=600)
+} """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -142,6 +142,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 CSRF_TRUSTED_ORIGINS = [
     r'https://.*',
     r'http://.*',
+    'https://emmanoelfly.fly.dev',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -204,3 +205,10 @@ REST_FRAMEWORK = {
 """ REST_AUTH_SERIALIZERS = {
     #
 } """
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')

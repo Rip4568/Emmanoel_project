@@ -13,8 +13,6 @@ class SolicitacaoAmizadeModelSerializer(serializers.ModelSerializer):
         model = SolicitacaoAmizade
         fields = '__all__'
 
-
-
 class MensagemParticipanteModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = MensagemParticipante

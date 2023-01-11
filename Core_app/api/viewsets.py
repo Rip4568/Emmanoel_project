@@ -22,8 +22,6 @@ from .serializers import (
     SolicitacaoAmizadeModelSerializer,
 )
 
-
-
 class CustomLoginView(LoginView):
     def get_response(self):
         orginal_response = super().get_response()
@@ -33,6 +31,7 @@ class CustomLoginView(LoginView):
             "perfil": PerfilModelSerializer(perfil).data,
             "postagens": Postagem.objects.filter(perfil=perfil),
             "grupos_participantes": None,
+            "grupos": perfil.grupos
         }
         orginal_response.data.update(mydata)
         return orginal_response
@@ -95,6 +94,13 @@ class NicknameExistsViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk, format=None):
         return Response(Perfil.objects.filter(nick_name=pk).exists())
+
+class UsernameExistsViewSet(viewsets.ViewSet):
+    def list(self, request, format=None):
+        return Response('passe um argumento para a api')
+    
+    def retrieve(self, request, pk, format=None):
+        return Response(User.objects.filter(username=pk).exists())
 
 
 """ 

@@ -8,7 +8,7 @@ class SolicitacaoAmizade(models.Model):
     de = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='solicitacao_de_min')
     para = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='solicitacao_para_mim')
     mensagem = models.CharField(_(""), max_length=128, default="Olá, quero ser seu amigo!")
-    status = models.CharField(max_length=255, choices=[
+    status = models.CharField(max_length=16, choices=[
         ('pendente','pendente'),
         ('aceito','aceito'),
         ('rejeitado','rejeitado'),

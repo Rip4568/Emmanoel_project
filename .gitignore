@@ -132,3 +132,5 @@ dmypy.json
 .vscode
 staticfiles/
 .*ps1
+#configuracoes do fleet, estou usando esse editor de codigo como teste
+.fleet/
