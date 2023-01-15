@@ -1,9 +1,14 @@
-import random
+#Perfil_app/models.py
+
 from django.db import models
-#from django.contrib.auth.models import User
 from User_app.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+class Amigos(models.Model):
+    #usuario1 = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='amigos_usuario1', blank=False,null=True)
+    #usuario2 = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='amigos_usuario2', blank=False,null=True)
+    data_amizade = models.DateTimeField(auto_now_add=True, blank=False,null=True)
 
 class Perfil(models.Model):
     """ blank = pode ser vazio no formulario
@@ -12,11 +17,14 @@ class Perfil(models.Model):
     nome_completo = models.CharField(max_length=128, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     data_nascimento = models.DateField(auto_now_add=False, blank=True, null=True)
-    nick_name = models.CharField(max_length=64, unique=True, blank=True,null=True)
+    nick_name = models.CharField(max_length=32, unique=True, blank=True,null=True)
     sexo = models.CharField(max_length=16, blank=True, null=True)
     descricao = models.CharField(max_length=255, blank=True, null=True)
     #futuramente alterar para ImageField
     foto = models.CharField(max_length=255, blank=True, null=True)
+    amigos = models.ManyToManyField("self", related_name='amigos', symmetrical=False,blank=True) #through='Amigos' para que server through ?
+
+    
     
     class Meta:
         verbose_name = ("Perfil")
@@ -32,8 +40,7 @@ def perfil_post_save_receiver(sender:User, instance, created, **kwargs):
     if created:
         Perfil.objects.create(user=instance)
 
-#essa linha abaixo talvez não seja necessario
-#pois a funcao do create em objects ja cria e salva no bd
 @receiver(post_save, sender=User)
 def perfil_post_save_receiver(sender, instance, **kwargs):
     instance.perfil.save()
+

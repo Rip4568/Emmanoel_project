@@ -11,3 +11,6 @@ adicionar essas duas linhas de comando abaixo do
 collectstatic do Dockerfile:
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+
+
+fazer o sistema de seguidores do modelo Perfil

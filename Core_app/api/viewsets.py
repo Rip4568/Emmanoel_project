@@ -29,9 +29,10 @@ class CustomLoginView(LoginView):
         mydata = {
             "user": LoginSerializer(self.user).data,
             "perfil": PerfilModelSerializer(perfil).data,
-            "postagens": Postagem.objects.filter(perfil=perfil),
             "grupos_participantes": None,
-            "grupos": perfil.grupos
+            "grupos": GrupoModelSerializer(perfil.grupos).data,
+            "minhas_postagens": PostagemModelSerializer(perfil.minhas_postagens).data,
+            #"postagens_de_amigos": PostagemModelSerializer(perfil.postagens_de_amigos).data,
         }
         orginal_response.data.update(mydata)
         return orginal_response
