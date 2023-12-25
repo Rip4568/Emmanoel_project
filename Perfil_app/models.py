@@ -22,7 +22,7 @@ class Perfil(models.Model):
     descricao = models.CharField(max_length=255, blank=True, null=True)
     #futuramente alterar para ImageField
     foto = models.CharField(max_length=255, blank=True, null=True)
-    amigos = models.ManyToManyField("self", related_name='amigos', symmetrical=False,blank=True) #through='Amigos' para que server through ?
+    amigos = models.ManyToManyField("self", symmetrical=False,blank=True) #through='Amigos' para que server through ?
 
     
     

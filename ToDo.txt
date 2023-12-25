@@ -14,3 +14,6 @@ RUN python manage.py migrate
 
 
 fazer o sistema de seguidores do modelo Perfil
+
+rodar o comando no flyctl:
+flyctl ssh console -C 'python /code/manage.py migrate'

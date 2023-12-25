@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'Mensagem_app',
     'Grupo_app',
     'Postagem_app',
+    'Comentario_app',
     'Album_app',
     #dependencias
     'channels',
